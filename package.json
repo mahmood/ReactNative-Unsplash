@@ -1,0 +1,29 @@
+{
+	"name": "Unsplash",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"test": "jest"
+	},
+	"dependencies": {
+		"axios": "^0.16.1",
+		"react": "^15.5.4",
+		"react-native": "0.44.0",
+		"react-native-router-flux": "^3.39.1",
+		"react-redux": "^5.0.5",
+		"react-router-native": "^4.1.1",
+		"redux": "^3.6.0",
+		"redux-thunk": "^2.2.0"
+	},
+	"devDependencies": {
+		"babel-jest": "20.0.3",
+		"babel-preset-react-native": "1.9.2",
+		"jest": "20.0.3",
+		"react-test-renderer": "16.0.0-alpha.6",
+		"remote-redux-devtools": "^0.5.11"
+	},
+	"jest": {
+		"preset": "react-native"
+	}
+}
