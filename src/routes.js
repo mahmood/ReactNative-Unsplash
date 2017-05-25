@@ -7,14 +7,15 @@ import Profile from './components/Profile';
 class Routes extends Component{
     render(){
         return (
-            <Router>
+            <Router drawerImage={require('./img/burger.png')}>
                 <Scene key="root">
                     <Scene 
                         navigationBarStyle={{backgroundColor: '#2c3e50'}}
                         titleStyle={{color: '#fff'}}
                         key="home" component={Home}
                         title="Unsplash"
-                        initial={true}/>
+                        initial={true}
+                        />
                     <Scene
                         key="profile"
                         title="Profile"

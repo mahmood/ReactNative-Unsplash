@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, TouchableHighlight, Alert} from 'react-native';
+import {Text, View, StyleSheet, Image, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/profileAction';
@@ -22,9 +22,15 @@ class Profile extends Component {
           <View style={styles.infoContainer}>
             <Text style={styles.name}>{this.props.user.profile.name}</Text>
             <Text style={styles.location}>{this.props.user.profile.location}</Text>
-          </View>
-          <View style={styles.photo}>
-            <Text>Photos</Text>
+            <View style={styles.photo}>
+            {this.props.user.profile.photos.map(item => {
+              return (
+                <View key={item.id} style={styles.profilePic}>
+                  <Image item={item} source={{uri: item.urls.small}} style={{width: 100, height: 100}} />
+                </View>
+              );
+            })}
+            </View>
           </View>
         </View>
     )
@@ -71,7 +77,10 @@ const styles = StyleSheet.create({
     height: 20
   },
   photo: {
-    
+    flexDirection: 'row',
+  },
+  profilePic:{
+   margin: 13
   }
 });
 
