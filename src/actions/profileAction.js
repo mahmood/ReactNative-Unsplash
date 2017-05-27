@@ -9,7 +9,6 @@ export function fetchProfile(username) {
     axios.get(`https://api.unsplash.com/users/${username}?client_id=${clientId}`)
       .then(response => {
         dispatch({ type: FETCH_PROFILE, profile: response.data });
-        console.log('from action', response.data);
       })
       .catch(error => {
         // dispatch({ type: FETCH_PHOTO_ERROR, error});

@@ -6,7 +6,8 @@ import Reducers from './reducers';
 import reduxThunk from 'redux-thunk';
 import devToolsEnhancer from 'remote-redux-devtools';
 import Drawer from 'react-native-drawer';
-import { Text } from 'react-native'; 
+import DrawerInside from './components/DrawerInside';
+
 
 export default class App extends Component {
   render (){
@@ -14,7 +15,7 @@ export default class App extends Component {
         <Provider store={createStore(Reducers, devToolsEnhancer({ realtime: true }), applyMiddleware(reduxThunk))}>
             <Drawer
               type="overlay"
-              content={<Text style={drawerStyles.content}>Drawer content</Text>}
+              content={<DrawerInside />}
               tapToClose={true}
               openDrawerOffset={0.2} // 20% gap on the right side of drawer
               panCloseMask={0.2}
@@ -33,7 +34,7 @@ export default class App extends Component {
 }
 
 const drawerStyles = {
-  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+  drawer: { shadowColor: '#000000', backgroundColor: '#fff', shadowOpacity: 0.8, shadowRadius: 3},
   main: {paddingLeft: 3},
   content: { marginTop: 10 }
 }

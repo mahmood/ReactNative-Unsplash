@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, Dimensions} from 'react-native';
+import {Text, View, StyleSheet, Dimensions, ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import Image from 'react-native-image-progress';
 import * as actions from '../actions/profileAction';
+import ProfileInside from '../components/ProfileInside';
+
 
 class Profile extends Component {
   componentDidMount() {
@@ -13,40 +16,22 @@ class Profile extends Component {
     this.props.actions.UnmountProfile();
   }
 
-  renderProfile(){
-    return (
-        <View style={{flex: 1}}>
-          <View style={styles.imageContainer}>
-            <Image style={styles.avatar} source={{ uri: this.props.user.profile.profile_image.large}}/>
-          </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.name}>{this.props.user.profile.name}</Text>
-            <Text style={styles.location}>{this.props.user.profile.location}</Text>
-            <View style={styles.photo}>
-            {this.props.user.profile.photos.map(item => {
-              return (
-                <View key={item.id} style={styles.profilePic}>
-                  <Image item={item} source={{uri: item.urls.small}} style={{width: 100, height: 100}} />
-                </View>
-              );
-            })}
-            </View>
-          </View>
-        </View>
-    )
-  }
-
   render() {
-    console.log(this.props)
     return (
       <View style={styles.container}>
-            {this.props.user.profile ? this.renderProfile() : <Text>Loading</Text>}
+        {this.props.user.profile ? <ProfileInside profile={this.props.user.profile} /> : <ActivityIndicator style={styles.centerIndicator} color="#000"/>}
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  centerIndicator: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 8,
+    flex: 1
+  },
   container: {
     flex: 1,
     marginTop: 63,
