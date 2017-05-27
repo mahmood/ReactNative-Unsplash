@@ -1,4 +1,5 @@
 export const FETCH_PHOTO = 'FETCH_PHOTO';
+export const REFRESH_PHOTO = 'REFRESH_PHOTO';
 export const LOAD_MORE = 'LOAD_MORE';
 export const FETCH_PROFILE = 'FETCH_PROFILE';
 export const UNMOUNT_PROFILE = 'UNMOUNT_PROFILE';

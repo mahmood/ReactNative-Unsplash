@@ -3,7 +3,9 @@ import {
   View,
   StatusBar,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
+  Text,
+  RefreshControl
  } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -19,14 +21,33 @@ class Home extends Component {
     this.props.actions.fetchPhoto();
   }
 
+  _onRefresh() {
+    this.props.actions.refreshPhoto();
+  }
+
+  _renderSpinner(){
+    if(this.props.refreshing == false){
+      return <ActivityIndicator style={styles.centerIndicator} color="#000"/>
+    }else {
+      return <Text>Loading...</Text>
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.home}>
-          <ScrollView>
+          <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.props.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
+        >
             {this.props.photo ? this.props.photo.map(item => {
               return <Card key={item.id} item={item} />
-            }) : <ActivityIndicator style={styles.centerIndicator} color="#000"/>}
+            }) : this._renderSpinner()}
           </ScrollView>
         </View>
       </View>
@@ -55,7 +76,8 @@ const styles = {
 
 const mapStateToProps = (state) => {
   return {
-    photo: state.home.photos
+    photo: state.home.photos,
+    refreshing: state.home.refreshing
   }
 }
 
