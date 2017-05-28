@@ -1,6 +1,8 @@
 # 📱 Unsplash Mobile Client 
 simple unsplash mobile client written with react-native
 
+## 👻 Preview
+![alt text](https://raw.githubusercontent.com/imahmoodz/ReactNative-Unsplash/master/preview.gif)
 
 ## 🤘 How to use
 
