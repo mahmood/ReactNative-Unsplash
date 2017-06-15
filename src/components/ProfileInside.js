@@ -8,7 +8,11 @@ class ProfileInside extends Component {
     return (  
       <View style={{flex: 1}}>
         <View style={styles.imageContainer}>
-          <Image indicator={ActivityIndicator} style={styles.avatar} source={{ uri: this.props.profile.profile_image.medium}}/>
+          <Image
+            indicator={ActivityIndicator}
+            style={styles.avatar}
+            source={{ uri: this.props.profile.profile_image.medium}}
+          />
         </View>
         <View style={styles.infoContainer}>
             <Text style={styles.name}>{this.props.profile.name}</Text>
@@ -17,7 +21,12 @@ class ProfileInside extends Component {
               {this.props.profile.photos.map(item => {
                 return (
                   <View key={item.id} style={styles.profilePic}>
-                    <Image indicator={ActivityIndicator} item={item} source={{uri: item.urls.regular}} style={{width: 100, height: 100}} />
+                    <Image
+                      indicator={ActivityIndicator} 
+                      item={item} 
+                      source={{uri: item.urls.regular}} 
+                      style={{width: 100, height: 100}} 
+                    />
                   </View>
                 );
               })}

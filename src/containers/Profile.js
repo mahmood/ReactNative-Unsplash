@@ -19,7 +19,10 @@ class Profile extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.props.user.profile ? <ProfileInside profile={this.props.user.profile} /> : <ActivityIndicator style={styles.centerIndicator} color="#000"/>}
+        {this.props.user.profile
+          ? <ProfileInside profile={this.props.user.profile} />
+          : <ActivityIndicator style={styles.centerIndicator} color="#000"/>
+        }
       </View>
     );
   }

@@ -14,14 +14,27 @@ class Card extends Component {
     return (
       <View style={styles.img}>
         <View style={styles.imageInfo}>
-          <Image source={{uri: item.user.profile_image.large}} style={styles.avatar}/>
-          <Text onPress={() => Actions.profile(item.user.username)} style={{margin: 15}}>{item.user.name}</Text>                    
+          <Image 
+            source={{uri: item.user.profile_image.large}}
+            style={styles.avatar}
+          />
+          <Text 
+            onPress={() => Actions.profile(item.user.username)}
+            style={{margin: 15}}
+          >{item.user.name}</Text>                    
         </View>
-        <Image indicator={ActivityIndicator}  item={item} source={{uri: item.urls.small}} style={{width, height: 350}} />
+        <Image 
+          indicator={ActivityIndicator} 
+          item={item} source={{uri: item.urls.small}}
+          style={{width, height: 350}}
+        />
         <View style={{flex: 1, flexDirection: 'row'}}>
           <Text style={styles.likeText}>Likes: {item.likes}</Text>
-          <TouchableHighlight onPress={() => this.downloadLink(item.urls.small)} underlayColor="#338c37" style={styles.downloadButton}>
-            <Text style={{color: '#fff', textAlign: 'center', marginTop: 3.5}}>Download</Text>
+          <TouchableHighlight
+            onPress={() => this.downloadLink(item.urls.small)}
+            underlayColor="#338c37"
+            style={styles.downloadButton}>
+            <Text style={styles.downloadButtonInner}>Download</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -73,6 +86,11 @@ const styles = {
     margin: 5,
     alignSelf: 'flex-end',
     borderRadius: 3
+  },
+  downloadButtonInner: {
+    color: '#fff',
+    textAlign: 'center',
+    marginTop: 3.5
   }
 }
 
