@@ -15,6 +15,8 @@ import Card from '../components/Card';
 class Home extends Component {
   constructor(props){
     super(props);
+    
+    this._onRefresh = this._onRefresh.bind(this);
   }
   componentDidMount() {
     StatusBar.setBarStyle('light-content');
@@ -29,7 +31,7 @@ class Home extends Component {
     if(this.props.refreshing == false){
       return <ActivityIndicator style={styles.centerIndicator} color="#000"/>
     }else {
-      return <Text>Loading...</Text>
+      return <View style={styles.refreshView}><Text>Loading...</Text></View>
     }
   }
 
@@ -38,13 +40,13 @@ class Home extends Component {
       <View style={styles.container}>
         <View style={styles.home}>
           <ScrollView
-          refreshControl={
-            <RefreshControl
-              refreshing={this.props.refreshing}
-              onRefresh={this._onRefresh.bind(this)}
-            />
-          }
-        >
+            refreshControl={
+              <RefreshControl
+                refreshing={this.props.refreshing}
+                onRefresh={this._onRefresh}
+              />
+            } 
+          >
             {this.props.photo ? this.props.photo.map(item => {
               return <Card key={item.id} item={item} />
             }) : this._renderSpinner()}
@@ -60,7 +62,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 8,
-    flex: 1
+    flex: 1,
   },
   container: {
     flex: 1,
@@ -71,6 +73,12 @@ const styles = {
     flex: 2,
     marginTop: 63,
     padding: 10
+  },
+  refreshView: { 
+    width: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1
   }
 }
 
